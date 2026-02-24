@@ -1,0 +1,18 @@
+{
+    "Meta Data": {
+        "1. Information": "Daily Prices (open, high, low, close) and Volumes",
+        "2. Symbol": "2887.TW",
+        "3. Last Refreshed": "2026-02-24",
+        "4. Output Size": "Compact",
+        "5. Time Zone": "Asia/Taipei"
+    },
+    "Time Series (Daily)": {
+        "2026-02-24": {
+            "1. open": "25.5000",
+            "2. high": "25.5000",
+            "3. low": "24.7500",
+            "4. close": "25.3000",
+            "5. volume": "94103"
+        }
+    }
+}

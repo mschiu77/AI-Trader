@@ -56,12 +56,14 @@ def get_market_type() -> str:
     """
     # 方式1: 从配置读取
     market = get_config_value("MARKET", None)
-    if market in ["cn", "us", "crypto"]:
+    if market in ["cn", "us", "crypto", "tw"]:
         return market
 
     # 方式2: 根据 LOG_PATH 推断
     log_path = get_config_value("LOG_PATH", "./data/agent_data")
-    if "astock" in log_path.lower() or "a_stock" in log_path.lower():
+    if "twstock" in log_path.lower() or "tw_stock" in log_path.lower():
+        return "tw"
+    elif "astock" in log_path.lower() or "a_stock" in log_path.lower():
         return "cn"
     elif "crypto" in log_path.lower():
         return "crypto"
@@ -242,6 +244,8 @@ def get_merged_file_path(market: str = "us") -> Path:
         return base_dir / "data" / "A_stock" / "merged.jsonl"
     elif market == "crypto":
         return base_dir / "data" / "crypto" / "crypto_merged.jsonl"
+    elif market == "tw":
+        return base_dir / "data" / "TW_stock" / "merged.jsonl"
     else:
         return base_dir / "data" / "merged.jsonl"
 

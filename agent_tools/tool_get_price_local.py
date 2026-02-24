@@ -45,6 +45,9 @@ def _workspace_data_path(filename: str, symbol: Optional[str] = None) -> Path:
         # Cryptocurrencies
         crypto_filename = "crypto_merged.jsonl" if filename == "merged.jsonl" else filename
         return base_dir / "data" / "crypto" / crypto_filename
+    elif symbol and (symbol.endswith(".TW") or symbol.endswith(".TWO")):
+        # Taiwan stocks (TWSE / TPEx)
+        return base_dir / "data" / "TW_stock" / filename
     else:
         # US stocks (default)
         return base_dir / "data" / filename

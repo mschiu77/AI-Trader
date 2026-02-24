@@ -1,0 +1,44 @@
+{
+  "agent_type": "BaseAgentTWStock",
+  "market": "tw",
+  "date_range": {
+    "init_date": "2025-10-01",
+    "end_date": "2025-10-31"
+  },
+  "models": [
+    {
+      "name": "gpt-4.1",
+      "basemodel": "openai/gpt-4.1",
+      "signature": "gpt-4.1",
+      "enabled": true
+    },
+    {
+      "name": "claude-3.7-sonnet",
+      "basemodel": "anthropic/claude-3.7-sonnet",
+      "signature": "claude-3.7-sonnet",
+      "enabled": false
+    },
+    {
+      "name": "deepseek-chat-v3.1",
+      "basemodel": "deepseek/deepseek-chat-v3.1",
+      "signature": "deepseek-chat-v3.1",
+      "enabled": false
+    },
+    {
+      "name": "gemini-2.5-flash",
+      "basemodel": "google/gemini-2.5-flash",
+      "signature": "gemini-2.5-flash",
+      "enabled": false
+    }
+  ],
+  "agent_config": {
+    "max_steps": 30,
+    "max_retries": 3,
+    "base_delay": 1.0,
+    "initial_cash": 1000000.0,
+    "verbose": true
+  },
+  "log_config": {
+    "log_path": "./data/agent_data_twstock"
+  }
+}
