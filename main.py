@@ -30,6 +30,10 @@ AGENT_REGISTRY = {
         "module": "agent.base_agent_astock.base_agent_astock_hour",
         "class": "BaseAgentAStock_Hour"
     },
+    "BaseAgentTWStock": {
+        "module": "agent.base_agent_twstock.base_agent_twstock",
+        "class": "BaseAgentTWStock"
+    },
     "BaseAgentCrypto": {
         "module": "agent.base_agent_crypto.base_agent_crypto",
         "class": "BaseAgentCrypto"
@@ -128,6 +132,8 @@ async def main(config_path=None):
     # Auto-detect market from agent_type (BaseAgentAStock always uses CN market)
     if agent_type == "BaseAgentAStock" or agent_type == "BaseAgentAStock_Hour":
         market = "cn"
+    elif agent_type == "BaseAgentTWStock":
+        market = "tw"
     elif agent_type == "BaseAgentCrypto":
         market = "crypto"
 
@@ -135,6 +141,8 @@ async def main(config_path=None):
         print(f"🌍 Market type: Cryptocurrency (24/7 trading)")
     elif market == "cn":
         print(f"🌍 Market type: A-shares (China)")
+    elif market == "tw":
+        print(f"🌍 Market type: Taiwan stocks")
     else:
         print(f"🌍 Market type: US stocks")
 
@@ -244,6 +252,8 @@ async def main(config_path=None):
             stock_symbols = None  # Crypto agent uses its own crypto_symbols
         elif agent_type == "BaseAgentAStock" or agent_type == "BaseAgentAStock_Hour":
             stock_symbols = None  # Let BaseAgentAStock use its default SSE 50
+        elif agent_type == "BaseAgentTWStock":
+            stock_symbols = None  # BaseAgentTWStock uses default TW50
         elif market == "cn":
             from prompts.agent_prompt import all_sse_50_symbols
 
@@ -297,6 +307,8 @@ async def main(config_path=None):
                 currency_symbol = "USDT"
             elif agent.market == "cn":
                 currency_symbol = "¥"
+            elif agent.market == "tw":
+                currency_symbol = "NT$"
             else:
                 currency_symbol = "$"
             print(f"📊 Final position summary:")
